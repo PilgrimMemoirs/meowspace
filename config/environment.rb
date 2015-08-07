@@ -3,6 +3,8 @@ Bundler.require
 
 require './app/models/cat'
 require './app/models/meow'
+require './app/models/like'
+require './app/models/follow'
 
 
 configure :development do

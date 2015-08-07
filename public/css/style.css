@@ -4,7 +4,7 @@ a {
 }
 
 a:hover {
-  color: #16a085;
+  color: #c0392b;
 }
 
 nav {
@@ -24,8 +24,12 @@ nav a {
   float: right;
 }
 
-.clearfix {
-    clear: both;
+.clearfix:after { 
+   content: "."; 
+   visibility: hidden; 
+   display: block; 
+   height: 0; 
+   clear: both;
 }
 
 .hero {
