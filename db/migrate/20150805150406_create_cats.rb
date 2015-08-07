@@ -4,9 +4,17 @@ class CreateCats < ActiveRecord::Migration
 
   def up #creates the table
     create_table :cats do |t|
-      t.string  :name
+      t.string  :first_name
+      t.string  :last_name
       t.integer :age
       t.string  :breed
+      t.text    :bio
+      t.boolean :private
+      t.boolean :admin
+
+      t.string  :username, unique: true
+      t.string  :password
+      t.timestamps
     end
   end
 

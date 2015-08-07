@@ -2,6 +2,7 @@ require 'bundler'
 Bundler.require
 
 require './config/environment.rb'
+require 'pry'
 
 class ApplicationController < Sinatra::Base
 
@@ -18,13 +19,17 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-  post '/sign-up' do
-    @cat = Cat.new
-    @cat.name = params[:name]
-    @cat.save
+  get '/login' do
+    erb :login
+  end
 
-    if @cat
+  post '/sign-up' do
+    @cat = Cat.new(:username => params[:username], :first_name => params[:first_name], :last_name => params[:last_name], :password => params[:password])
+
+    if @cat.save
       session[:user_id] = @cat
+    else
+      @error = "Sign-up Failed"
     end
 
     erb :index
@@ -35,6 +40,8 @@ class ApplicationController < Sinatra::Base
 
     if @cat
       session[:user_id] = @cat
+    else
+      @error = "Login Failed: Figure your stuff out"
     end
 
     erb :index

@@ -11,12 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150805150808) do
+ActiveRecord::Schema.define(version: 20150807014055) do
 
   create_table "cats", force: :cascade do |t|
-    t.string  "name"
-    t.integer "age"
-    t.string  "breed"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "age"
+    t.string   "breed"
+    t.text     "bio"
+    t.boolean  "private"
+    t.boolean  "admin"
+    t.string   "username"
+    t.string   "password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.integer  "follower_id"
+    t.integer  "followee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "meow_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "meows", force: :cascade do |t|

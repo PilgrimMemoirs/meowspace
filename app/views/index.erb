@@ -1,37 +1,30 @@
-
+<div class="hero" id="index-hero">
+  <h2> WELCOME TO MEOWSPACE</h2>
+</div>
 <% if session[:user_id] %>
-<form method="POST" action="/logout">
-  <input type="submit" value="Logout">
-</form>
-
- Hello <%= session[:user_id].name %>
 
 
-<form method="POST" action="/meow">
-  <input type="text" name="message" placeholder="Meow Here">
-  <input type="hidden" name="cat" value="<%= session[:user_id].id %> ">
-  <input type="submit">
- </form>
+ Hello <%= session[:user_id].first_name %>
 
+
+
+<div id="meow">
+  <form method="POST" action="/meow">
+    <input type="text" name="message" placeholder="Meow Here">
+    <input type="hidden" name="cat" value="<%= session[:user_id].id %> ">
+    <input type="submit">
+   </form>
+</div>
+
+<%else%>
+  <a href="/login"> Sign up right MEOW! </a>
+<% end %>
+<br>
+<% Meow.all.each do |meow| %>
+  <%= meow.message %> by <%= meow.cat.first_name %> <br>
 <% end %>
 
 
-
-<h1> Yo catz </h1>
-
-
-
-
-
-
-
-
-<% Meow.all.each do |meow| %>
-  <h3> 
-    <%= meow.message %> 
-    <%= meow.cat.name.upcase.reverse %> 
-  </h3>
-<%end %>
 
 
 

@@ -7,22 +7,20 @@
   </head>
   <body>
       <nav>
-        <h1>MEOWSPACE</h1>
+        <h1><a href="/">MEOWSPACE</a></h1>
+        <% if session[:user_id] %>
+          <form method="POST" action="/logout">
+            <input type="submit" value="Logout">
+          </form>
 
-        <form method="POST" action="/sign-up">
-          <input type="text" name="name" placeholder="Cat Name">
-          <input type="submit">
-        </form>
-
-        <form method="POST" action="/login">
-          <input type="text" name="id" placeholder="cat id">
-          <input type="submit">
-        </form>
-      </nav>
-
-
-        <%= yield %>
-
+        <% else %>
+          <a href="/login"> Login or Signup </a>
+        <%end%>
+        </nav>
+        <div class="clearfix"></div>
+        <div id="container">
+          <%= yield %>
+        </div>
       <footer>
         
       </footer>
