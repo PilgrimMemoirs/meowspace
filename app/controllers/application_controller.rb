@@ -19,15 +19,31 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
+  get '/cat/:id' do
+    @cat = Cat.find(params[:id])
+    erb :cat
+  end
+
+  post '/like' do
+    liked = Like.new(cat_id: params[:user], meow_id: params[:meow])
+    liked.save
+
+    erb :index
+  end
+
   get '/login' do
     erb :login
   end
 
   post '/sign-up' do
-    @cat = Cat.new(:username => params[:username], :first_name => params[:first_name], :last_name => params[:last_name], :password => params[:password])
+    @cat = Cat.new(:username => params[:username], 
+      :first_name => params[:first_name], 
+      :last_name => params[:last_name], 
+      :password => params[:password])
 
     if @cat.save
       session[:user_id] = @cat
+      @message = "successfully signed up"
     else
       @error = "Sign-up Failed"
     end

@@ -1,0 +1,21 @@
+Welcome to <%= @cat.first_name %>'s Profile
+
+
+<h2> Meows </h2>
+  <% if @cat.meows.length > 0 %>
+    <% @cat.meows.each do |meow| %>
+      <%= meow.message %>
+    <%end%>
+  <%else%>
+    No Meows
+  <%end%>
+
+<h2> Likes </h2>
+
+  <% if @cat.likes.length > 0 %>
+    <% @cat.likes.each do |like| %>
+      <%= like.meow.message %>
+    <%end%>
+  <%else%>
+    No LIkes
+  <%end%>

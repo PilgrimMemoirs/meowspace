@@ -1,6 +1,16 @@
 <div class="hero" id="index-hero">
   <h2> WELCOME TO MEOWSPACE</h2>
 </div>
+
+<% if @error %>
+  <%= @error %>
+<% end %>
+
+
+<% if @message %>
+  <%= @message %>
+<% end %>
+
 <% if session[:user_id] %>
 
 
@@ -21,7 +31,15 @@
 <% end %>
 <br>
 <% Meow.all.each do |meow| %>
-  <%= meow.message %> by <%= meow.cat.first_name %> <br>
+  <%= meow.message %> by <%= meow.cat.first_name %> 
+  <%if session[:user_id]%>
+    <form method="POST" action="/like"> 
+      <input type="hidden" name="meow" value="<%= meow.id %>">
+      <input type="hidden" name="user" value="<%= session[:user_id].id %>">  
+      <input type="submit" value="like"> 
+    </form>
+  <% end %>
+  <br>
 <% end %>
 
 
